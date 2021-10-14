@@ -63,12 +63,19 @@ describe("Round", () => {
     expect(round.takeTurn("John")).to.equal("correct!");
   });
 
-  it("should calculate the percent correct", () => {
+  it("should calculate the percent correctly", () => {
     round.takeTurn("pie");
     round.takeTurn("John");
     round.takeTurn("koala");
     expect(round.calculatePercentCorrect()).to.equal(33);
   });
+
+
+  it("should calculate 100 percent if no wrong answers", () => {
+    round.takeTurn("rice");
+    round.takeTurn("John");
+    round.takeTurn("sloth");
+    expect(round.calculatePercentCorrect()).to.equal(100);
 
   it("should be able to end round", () => {
     expect(round.endRound).to.be.a("function");
@@ -79,6 +86,5 @@ describe("Round", () => {
     game.start();
     game.currentRound.endRound();
     expect(game.currentRound.startTime).to.be.above(0);
-
   });
 });
