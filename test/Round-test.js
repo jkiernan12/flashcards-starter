@@ -3,6 +3,7 @@ const Card = require("../src/Card.js");
 const Turn = require("../src/Turn.js");
 const Deck = require("../src/Deck.js");
 const Round = require("../src/Round.js");
+const Game = require("../src/Game.js");
 const expect = chai.expect;
 
 describe("Round", () => {
@@ -15,6 +16,7 @@ describe("Round", () => {
     card3 = new Card(3, "What is my fav animal?", ["koala", "panda", "sloth"], "sloth");
     deck = new Deck([card1, card2, card3]);
     round = new Round(deck);
+    game = new Game();
   })
 
   it("should be a function", () => {
@@ -68,10 +70,21 @@ describe("Round", () => {
     expect(round.calculatePercentCorrect()).to.equal(33);
   });
 
+
   it("should calculate 100 percent if no wrong answers", () => {
     round.takeTurn("rice");
     round.takeTurn("John");
     round.takeTurn("sloth");
     expect(round.calculatePercentCorrect()).to.equal(100);
+
+  it("should be able to end round", () => {
+    expect(round.endRound).to.be.a("function");
+  });
+
+  it("should time the round", () => {
+    expect(round.startTime).to.be.undefined;
+    game.start();
+    game.currentRound.endRound();
+    expect(game.currentRound.startTime).to.be.above(0);
   });
 });
