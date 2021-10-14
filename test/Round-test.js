@@ -8,7 +8,7 @@ const expect = chai.expect;
 
 describe("Round", () => {
 
-  let card1, card2, card3, deck, round;
+  let card1, card2, card3, deck, round, game;
 
   beforeEach(function() {
     card1 = new Card(1, "What is my fav food?", ["rice", "reeses"], "rice");
@@ -76,6 +76,7 @@ describe("Round", () => {
     round.takeTurn("John");
     round.takeTurn("sloth");
     expect(round.calculatePercentCorrect()).to.equal(100);
+  });
 
   it("should be able to end round", () => {
     expect(round.endRound).to.be.a("function");
@@ -87,4 +88,4 @@ describe("Round", () => {
     game.currentRound.endRound();
     expect(game.currentRound.startTime).to.be.above(0);
   });
-});
+})
