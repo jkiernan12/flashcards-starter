@@ -34,5 +34,5 @@ describe("Game", () => {
   it("should keep track of the currentRound", () => {
     game.start();
     expect(game.currentRound).to.be.an.instanceOf(Round);
-  })
+  });
 })
